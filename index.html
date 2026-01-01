@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Year Anniversary 💜</title>
+
+<style>
+:root{
+  --pink:#ff8fcf;
+  --purple:#9b7bff;
+  --deep:#4f4f7a;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:"Segoe UI",system-ui,sans-serif;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#f6e9ff,#e9ddff,#ffe9f5);
+  overflow:hidden;
+}
+
+/* ================= GLOW ================= */
+.glow{
+  position:fixed;
+  width:520px;
+  height:520px;
+  background:radial-gradient(circle,rgba(190,160,255,.6),transparent 70%);
+  filter:blur(90px);
+  animation:move 26s infinite alternate ease-in-out;
+  z-index:0;
+}
+.g1{top:-220px;left:-200px;}
+.g2{bottom:-240px;right:-200px;animation-delay:6s;}
+@keyframes move{to{transform:translateY(160px);}}
+
+/* ================= FLOAT BG ================= */
+.bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* รูปลอย */
+.float-img{
+  position:absolute;
+  bottom:-80px;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  object-fit:cover;
+  opacity:.85;
+  animation:rise linear forwards;
+  box-shadow:0 6px 14px rgba(160,120,255,.35);
+}
+
+/* emoji ลอย */
+.floating{
+  position:absolute;
+  bottom:-60px;
+  font-size:20px;
+  animation:rise linear forwards;
+  opacity:.75;
+}
+
+@keyframes rise{
+  from{transform:translateY(0) scale(.9);opacity:0;}
+  20%{opacity:1;}
+  to{transform:translateY(-120vh) scale(1.2);opacity:0;}
+}
+
+/* ================= SCREENS ================= */
+.screen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+  transition:1s ease;
+}
+
+/* ===== Screen 1 : OPEN ===== */
+#screen-open{
+  background:linear-gradient(135deg,#ffb6e6,#c6b6ff);
+}
+.open-card{
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(30px);
+  padding:90px 70px;
+  border-radius:60px;
+  text-align:center;
+  color:#fff;
+  box-shadow:0 40px 120px rgba(0,0,0,.25);
+}
+.open-card h1{font-size:40px;}
+.open-card button{
+  margin-top:50px;
+  padding:20px 80px;
+  border:none;
+  border-radius:50px;
+  font-size:18px;
+  cursor:pointer;
+  background:#fff;
+  color:var(--purple);
+}
+
+/* ===== Screen 2 : HEART TANK ===== */
+#screen-heart{
+  background:linear-gradient(135deg,#f3c2ff,#d6c2ff);
+  display:none;
+}
+.heart-tank{
+  width:200px;
+  height:260px;
+  position:relative;
+}
+.heart-outline{
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 50% 30%,transparent 52%,#fff 53%),
+    radial-gradient(circle at 25% 30%,#fff 60%,transparent 61%),
+    radial-gradient(circle at 75% 30%,#fff 60%,transparent 61%);
+  clip-path:path("M100 240 C-20 120 20 20 100 80 C180 20 220 120 100 240 Z");
+}
+.heart-fill{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:0%;
+  background:linear-gradient(180deg,#ff7ac8,#b57bff);
+  clip-path:path("M100 240 C-20 120 20 20 100 80 C180 20 220 120 100 240 Z");
+  transition:.3s;
+}
+
+/* ===== Screen 3 : PASSWORD ===== */
+#screen-pass{
+  background:linear-gradient(135deg,#e0d0ff,#ffd0ec);
+  display:none;
+}
+.pass-box{
+  background:#fff;
+  padding:50px 40px;
+  border-radius:40px;
+  text-align:center;
+}
+.pass-box input{
+  padding:12px;
+  font-size:18px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  text-align:center;
+}
+.pass-box button{
+  margin-top:20px;
+  padding:12px 40px;
+  border:none;
+  border-radius:30px;
+  background:var(--purple);
+  color:#fff;
+  font-size:16px;
+}
+
+/* ===== Screen 4 : BLACK + FIREWORK ===== */
+#screen-fire{
+  background:black;
+  display:none;
+  overflow:hidden;
+}
+.fire{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  animation:fire 1.5s linear forwards;
+}
+@keyframes fire{
+  to{transform:translateY(-200px) scale(0);opacity:0;}
+}
+
+/* ===== MAIN CARD ===== */
+.main{
+  position:relative;
+  z-index:10;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1.2s ease;
+}
+.main.show{opacity:1;transform:none;}
+
+.card{
+  max-width:460px;
+  background:rgba(240,230,255,.95);
+  backdrop-filter:blur(30px);
+  border-radius:54px;
+  padding:52px 36px;
+  text-align:center;
+  box-shadow:0 45px 120px rgba(180,140,255,.45);
+}
+
+.photo-wrap{width:200px;height:200px;margin:0 auto 28px;}
+.photo{
+  width:100%;height:100%;
+  border-radius:50%;
+  overflow:hidden;
+  border:7px solid #fff;
+}
+.photo img{width:100%;height:100%;object-fit:cover;}
+
+h2{font-size:32px;color:var(--deep);}
+.names{font-size:19px;color:#6a78a0;}
+
+.badge{
+  margin-top:16px;
+  padding:12px 28px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff9fd8,#b59bff);
+  color:#fff;
+}
+
+#loveTime{margin-top:18px;font-size:14px;color:#5a6a8f;}
+
+.message{
+  margin-top:22px;
+  padding:18px 20px;
+  border-radius:20px;
+  background:#f6f0ff;
+  color:#4f5f88;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="bg" id="bg"></div>
+
+<!-- SCREEN 1 -->
+<div class="screen" id="screen-open">
+  <div class="open-card">
+    <h1>สำหรับน้องโอปอ 💜</h1>
+    <button onclick="goHeart()">✨ เปิดสิ</button>
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="screen-heart">
+  <div class="heart-tank" onclick="fillHeart()">
+    <div class="heart-outline"></div>
+    <div class="heart-fill" id="heartFill"></div>
+  </div>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen" id="screen-pass">
+  <div class="pass-box">
+    <h3>ใส่รหัส</h3>
+    <input id="pass" maxlength="6">
+    <br>
+    <button onclick="checkPass()">ยืนยัน</button>
+  </div>
+</div>
+
+<!-- SCREEN 4 -->
+<div class="screen" id="screen-fire"></div>
+
+<!-- MAIN -->
+<div class="main" id="main">
+  <div class="card">
+    <div class="photo-wrap">
+      <div class="photo"><img src="main.jpg"></div>
+    </div>
+    <h2>Happy Anniversary</h2>
+    <div class="names">เอิร์ท 🤍 น้องโอปอ</div>
+    <div class="badge">1Y • 08/02/25</div>
+    <div id="loveTime"></div>
+    <div class="message">เขียนอะไรดีน้าา 💜</div>
+  </div>
+</div>
+
+<script>
+let heart=0, used=false;
+
+/* Screen flow */
+function goHeart(){
+  screenOpen.style.display="none";
+  screenHeart.style.display="flex";
+}
+function fillHeart(){
+  if(heart>=100)return;
+  heart+=10;
+  heartFill.style.height=heart+"%";
+  if(heart>=100){
+    setTimeout(()=>{
+      screenHeart.style.display="none";
+      screenPass.style.display="flex";
+    },500);
+  }
+}
+function checkPass(){
+  if(used)return;
+  used=true;
+  if(pass.value==="080225"){
+    screenPass.style.display="none";
+    screenFire.style.display="block";
+    firework();
+    setTimeout(()=>{
+      screenFire.style.display="none";
+      main.classList.add("show");
+    },3000);
+  }
+}
+
+/* Firework */
+function firework(){
+  const i=setInterval(()=>{
+    for(let j=0;j<20;j++){
+      const f=document.createElement("div");
+      f.className="fire";
+      f.style.left=Math.random()*100+"vw";
+      f.style.bottom="0";
+      f.style.background=`hsl(${Math.random()*360},100%,70%)`;
+      screenFire.appendChild(f);
+      setTimeout(()=>f.remove(),1500);
+    }
+  },400);
+  setTimeout(()=>clearInterval(i),2500);
+}
+
+/* Love time */
+function updateLoveTime(){
+  const start=new Date(2025,1,8,7,40,0);
+  const now=new Date();
+  let d=Math.floor((now-start)/1000);
+  const day=Math.floor(d/86400);d%=86400;
+  const h=Math.floor(d/3600);d%=3600;
+  const m=Math.floor(d/60);
+  const s=d%60;
+  loveTime.innerHTML=`${day} วัน ${h} ชม. ${m} นาที ${s} วิ`;
+}
+setInterval(updateLoveTime,1000);updateLoveTime();
+
+/* Floating */
+const imgs=["pic1.jpg","pic2.jpg","pic3.jpg","pic4.jpg","pic5.jpg","pic6.jpg"];
+setInterval(()=>{
+  const i=document.createElement("img");
+  i.src=imgs[Math.random()*imgs.length|0];
+  i.className="float-img";
+  i.style.left=Math.random()*100+"vw";
+  i.style.animationDuration=(12+Math.random()*6)+"s";
+  bg.appendChild(i);
+  setTimeout(()=>i.remove(),22000);
+},400);
+
+const icons=["💜","💖","✨","⭐","🌸","🌷"];
+setInterval(()=>{
+  const f=document.createElement("div");
+  f.className="floating";
+  f.innerText=icons[Math.random()*icons.length|0];
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=(11+Math.random()*6)+"s";
+  bg.appendChild(f);
+  setTimeout(()=>f.remove(),20000);
+},650);
+</script>
+
+</body>
+</html>
